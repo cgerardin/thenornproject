@@ -99,8 +99,8 @@ namespace TheNornProject
                                 for (int env_x = 0; env_x < 4; env_x++)
                                 {
 
-                                    map_x = n.X / 32 + view_x;
-                                    map_y = n.Y / 32 + view_y;
+                                    map_x = n.X + view_x;
+                                    map_y = n.Y + view_y;
 
                                     if (map_x < 0 || map_x >= map.Size || map_y < 0 || map_y >= map.Size)
                                     {
@@ -173,13 +173,13 @@ namespace TheNornProject
             // Objects
             foreach (Item i in items)
             {
-                e.Graphics.DrawImage(bitmaps[(int)i.Sprite], i.X, i.Y);
+                e.Graphics.DrawImage(bitmaps[(int)i.Sprite], i.X * 32, i.Y * 32);
                 if (i is Norn)
                 {
                     Norn n = (Norn)i;
-                    e.Graphics.DrawString(n.Name, Font, Brushes.White, (n.X - (n.Name.Length)), n.Y - Font.Size * 2);
-                    e.Graphics.DrawRectangle(Pens.Red, n.X, (n.Y - 5), (1000 / 32), 1);
-                    e.Graphics.DrawRectangle(Pens.Green, n.X, (n.Y - 5), (n.Life * 10 / 32), 1);
+                    e.Graphics.DrawString(n.Name, Font, Brushes.White, (n.X * 32 - (n.Name.Length)), n.Y * 32 - Font.Size * 2);
+                    e.Graphics.DrawRectangle(Pens.Red, n.X * 32, (n.Y * 32 - 5), (1000 / 32), 1);
+                    e.Graphics.DrawRectangle(Pens.Green, n.X * 32, (n.Y * 32 - 5), (n.Life * 10 / 32), 1);
                 }
 
             }
@@ -190,10 +190,16 @@ namespace TheNornProject
 
             if (e.KeyCode == Keys.N)
             {
-                int x = rnd.Next(0, display.Width / 32);
-                int y = rnd.Next(0, display.Height / 32);
+                int x, y;
+                do
+                {
+                    x = rnd.Next(0, map.Size);
+                    y = rnd.Next(0, map.Size);
+                } while (map.Data[x, y] == Sprite.terrain_empty || map.Data[x, y] == Sprite.terrain_wall);
+
                 bool sex = rnd.Next(0, 2) != 0;
-                Norn n = new Norn(Norn.GenerateNornName(sex), sex, x * 32, y * 32);
+                Norn n = new Norn(Norn.GenerateNornName(sex), sex, x, y);
+
                 items.Add(n);
             }
 

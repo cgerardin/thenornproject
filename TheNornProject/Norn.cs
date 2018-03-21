@@ -99,7 +99,7 @@ namespace TheNornProject
                 case 1:
                     if (Environment.Data[3, 2] != Sprite.terrain_wall && Environment.Data[3, 2] != Sprite.terrain_empty)
                     {
-                        X += 32;
+                        X += 1;
                     }
                     else
                     {
@@ -110,7 +110,7 @@ namespace TheNornProject
                 case 2:
                     if (Environment.Data[1, 2] != Sprite.terrain_wall && Environment.Data[3, 2] != Sprite.terrain_empty)
                     {
-                        X -= 32;
+                        X -= 1;
                     }
                     else
                     {
@@ -121,7 +121,7 @@ namespace TheNornProject
                 case 3:
                     if (Environment.Data[2, 3] != Sprite.terrain_wall && Environment.Data[3, 2] != Sprite.terrain_empty)
                     {
-                        Y += 32;
+                        Y += 1;
                     }
                     else
                     {
@@ -132,7 +132,7 @@ namespace TheNornProject
                 case 4:
                     if (Environment.Data[2, 1] != Sprite.terrain_wall && Environment.Data[3, 2] != Sprite.terrain_empty)
                     {
-                        Y -= 32;
+                        Y -= 1;
                     }
                     else
                     {
