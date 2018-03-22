@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.display = new System.Windows.Forms.PictureBox();
-            this.textBoxLog = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.display)).BeginInit();
             this.SuspendLayout();
             // 
@@ -43,26 +42,14 @@
             this.display.TabStop = false;
             this.display.Paint += new System.Windows.Forms.PaintEventHandler(this.display_Paint);
             // 
-            // textBoxLog
-            // 
-            this.textBoxLog.Enabled = false;
-            this.textBoxLog.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxLog.Location = new System.Drawing.Point(619, 12);
-            this.textBoxLog.Multiline = true;
-            this.textBoxLog.Name = "textBoxLog";
-            this.textBoxLog.Size = new System.Drawing.Size(436, 575);
-            this.textBoxLog.TabIndex = 1;
-            // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(1067, 608);
-            this.Controls.Add(this.textBoxLog);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BackColor = System.Drawing.Color.Black;
+            this.ClientSize = new System.Drawing.Size(608, 608);
             this.Controls.Add(this.display);
             this.DoubleBuffered = true;
-            this.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
@@ -71,13 +58,11 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.display)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
         private System.Windows.Forms.PictureBox display;
-        private System.Windows.Forms.TextBox textBoxLog;
     }
 }
 
