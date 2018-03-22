@@ -58,7 +58,7 @@ namespace TheNornProject
                 // Norns
                 foreach (Norn n in Program.Map.Norns)
                 {
-                    textBoxLog.Text += (n.Name + "            ").Substring(0, 12) + "\t\t" + n.Age + "\t" + n.Life + "\t" + n.Hunger + "\r\n";
+                    textBoxLog.Text += (n.Name + "            ").Substring(0, 12) + "\t\t" + n.Age/12 + "\t" + n.Life + "\t" + n.Hunger + "\r\n";
 
                     if (n.IsAlive())
                     {
@@ -148,7 +148,7 @@ namespace TheNornProject
                 if (n.IsAlive())
                 {
                     e.Graphics.DrawRectangle(Pens.Red, n.X * 32, (n.Y * 32 - 5), (1000 / 32), 1);
-                    e.Graphics.DrawRectangle(Pens.Green, n.X * 32, (n.Y * 32 - 5), (n.Life * 10 / 32), 1);
+                    e.Graphics.DrawRectangle(Pens.Blue, n.X * 32, (n.Y * 32 - 5), (n.Life * 10 / 32), 1);
                 }
             }
         }

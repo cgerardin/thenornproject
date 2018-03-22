@@ -34,7 +34,7 @@ namespace TheNornProject
             }
             real_age = 0;
             Life = 100;
-            Hunger = 60;
+            Hunger = 80;
 
             last_direction = 0;
             steps_count = 0;
@@ -50,7 +50,7 @@ namespace TheNornProject
             // Age
             real_age += 0.05;
             Age = Convert.ToInt32(Math.Truncate(real_age));
-            if (Age > 15)
+            if (Age > 30) // Durée de vie en mois : un peu moins de 3 ans.
             {
                 Life--;
             }
@@ -139,6 +139,7 @@ namespace TheNornProject
                 {
                     Eat();
                     last_direction = 0;
+                    return; // Dodo !
                 }
                 else
                 {
@@ -190,7 +191,6 @@ namespace TheNornProject
             target_x = -1;
             target_y = -1;
             Hunger = 100;
-            last_direction = 0; // Dodo !
             if (Sex)
             {
                 Sprite = Sprite.norn_male;
