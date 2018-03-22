@@ -58,7 +58,7 @@ namespace TheNornProject
                 // Norns
                 foreach (Norn n in Program.Map.Norns)
                 {
-                    textBoxLog.Text += (n.Name + "            ").Substring(0, 12) + "\t\t" + n.Age/12 + "\t" + n.Life + "\t" + n.Hunger + "\r\n";
+                    textBoxLog.Text += (n.Name + "            ").Substring(0, 12) + "\t\t" + n.Age / 12 + "\t" + n.Life + "\t" + n.Hunger + "\r\n";
 
                     if (n.IsAlive())
                     {
@@ -143,12 +143,25 @@ namespace TheNornProject
             // Norns
             foreach (Norn n in Program.Map.Norns)
             {
+                // Sprite
                 e.Graphics.DrawImage(Program.Bitmaps[(int)n.Sprite], n.X * 32, n.Y * 32);
+                // Nom
                 e.Graphics.DrawString(n.Name, Font, Brushes.White, (n.X * 32 - (n.Name.Length)), n.Y * 32 - Font.Size * 2);
                 if (n.IsAlive())
                 {
+                    // Vie
                     e.Graphics.DrawRectangle(Pens.Red, n.X * 32, (n.Y * 32 - 5), (1000 / 32), 1);
                     e.Graphics.DrawRectangle(Pens.Blue, n.X * 32, (n.Y * 32 - 5), (n.Life * 10 / 32), 1);
+
+                    // Humeur
+                    if (n.IsHungry() && !n.IsChasing())
+                    {
+                        e.Graphics.DrawString("?", Font, Brushes.Orange, (n.X * 32 + 32), n.Y * 32);
+                    }
+                    else if (n.IsChasing())
+                    {
+                        e.Graphics.DrawString("!", Font, Brushes.Red, (n.X * 32 + 32), n.Y * 32);
+                    }
                 }
             }
         }

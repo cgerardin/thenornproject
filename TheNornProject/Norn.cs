@@ -65,7 +65,7 @@ namespace TheNornProject
                 Hunger = 0;
                 Life--;
             }
-            else if (Hunger > 50 && Life < 100)
+            else if (!IsHungry() && IsHurt())
             {
                 Life++;
             }
@@ -90,19 +90,11 @@ namespace TheNornProject
                 {
                     if (Environment.Items[x, y] != null)
                     {
-                        if (Environment.Items[x, y].Sprite == Sprite.object_meat && Hunger < 70)
+                        if (Environment.Items[x, y].Sprite == Sprite.object_meat && IsHungry())
                         {
                             Debug.WriteLine(Name + " : Look at this steak ! =)");
                             target_x = X + envx;
                             target_y = Y + envy;
-                            if (Sex)
-                            {
-                                Sprite = Sprite.norn_male_hungry;
-                            }
-                            else
-                            {
-                                Sprite = Sprite.norn_female_hungry;
-                            }
                         }
                     }
                     envx++;
@@ -110,20 +102,13 @@ namespace TheNornProject
                 envy++;
             }
 
-            if (target_x != -1 || Hunger < 50)
+            if (IsChasing() || IsHungry())
             {
                 Move();
             }
-            else if (target_x == -1)
+            else if (!IsChasing())
             {
-                if (Sex)
-                {
-                    Sprite = Sprite.norn_male;
-                }
-                else
-                {
-                    Sprite = Sprite.norn_female;
-                }
+                //
             }
 
         }
@@ -133,9 +118,9 @@ namespace TheNornProject
             old_x = X;
             old_y = Y;
 
-            if (target_x != -1)
+            if (IsChasing())
             {
-                if (target_x == X && target_y == Y)
+                if (target_x == X && target_y == Y && IsHungry())
                 {
                     Eat();
                     last_direction = 0;
@@ -211,9 +196,22 @@ namespace TheNornProject
 
         public bool IsAlive()
         {
-
             return Life > -1;
+        }
 
+        public bool IsHungry()
+        {
+            return Hunger < 50;
+        }
+
+        public bool IsHurt()
+        {
+            return Life < 100;
+        }
+
+        public bool IsChasing()
+        {
+            return target_x != -1;
         }
 
         public int Age { get => age; set => age = value; }
