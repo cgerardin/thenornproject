@@ -35,7 +35,7 @@
             // 
             // display
             // 
-            this.display.BackColor = System.Drawing.Color.Black;
+            this.display.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.display.Location = new System.Drawing.Point(0, 0);
             this.display.Name = "display";
             this.display.Size = new System.Drawing.Size(608, 608);
@@ -46,6 +46,7 @@
             // textBoxLog
             // 
             this.textBoxLog.Enabled = false;
+            this.textBoxLog.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxLog.Location = new System.Drawing.Point(619, 12);
             this.textBoxLog.Multiline = true;
             this.textBoxLog.Name = "textBoxLog";

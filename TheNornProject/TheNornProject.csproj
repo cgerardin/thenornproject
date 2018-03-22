@@ -105,6 +105,12 @@
     <Content Include="resources\22.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="resources\23.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="resources\24.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="resources\30.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

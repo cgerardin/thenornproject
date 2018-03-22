@@ -15,10 +15,6 @@ namespace TheNornProject
         DateTime startCompute;
         DateTime startRender;
 
-        Map map;
-        Bitmap[] bitmaps;
-        List<Item> items;
-
         public MainForm()
         {
 
@@ -26,41 +22,6 @@ namespace TheNornProject
             Application.Idle += HandleApplicationIdle;
 
             rnd = new Random();
-
-            map = new Map("demo_map", 19);
-            map.Data = new Sprite[,] {
-                {Sprite.terrain_empty, Sprite.terrain_empty, Sprite.terrain_empty, Sprite.terrain_empty, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall},
-                {Sprite.terrain_empty, Sprite.terrain_empty, Sprite.terrain_empty, Sprite.terrain_empty, Sprite.terrain_wall, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_wall},
-                {Sprite.terrain_empty, Sprite.terrain_empty, Sprite.terrain_empty, Sprite.terrain_empty, Sprite.terrain_wall, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_wall},
-                {Sprite.terrain_empty, Sprite.terrain_empty, Sprite.terrain_empty, Sprite.terrain_empty, Sprite.terrain_wall, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_wall},
-                {Sprite.terrain_empty, Sprite.terrain_empty, Sprite.terrain_empty, Sprite.terrain_empty, Sprite.terrain_wall, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_wall},
-                {Sprite.terrain_empty, Sprite.terrain_empty, Sprite.terrain_empty, Sprite.terrain_empty, Sprite.terrain_wall, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_wall},
-                {Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_wall},
-                {Sprite.terrain_wall, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_wall},
-                {Sprite.terrain_wall, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_wall},
-                {Sprite.terrain_wall, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_wall},
-                {Sprite.terrain_wall, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_wall},
-                {Sprite.terrain_wall, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_wall},
-                {Sprite.terrain_wall, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_wall},
-                {Sprite.terrain_wall, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_wall},
-                {Sprite.terrain_wall, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_wall},
-                {Sprite.terrain_wall, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_wall},
-                {Sprite.terrain_wall, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_wall},
-                {Sprite.terrain_wall, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_wall},
-                {Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall}
-            };
-
-            bitmaps = new Bitmap[SpritesCount];
-            for (int i = 0; i < SpritesCount; i++)
-            {
-                if (File.Exists("resources\\" + i + ".png"))
-                {
-                    bitmaps[i] = new Bitmap(new Bitmap("resources\\" + i + ".png"), new Size(32, 32));
-                }
-            }
-
-            items = new List<Item>();
-            items.Add(new Item("", Sprite.object_meat, 512, 128));
 
             startCompute = DateTime.Now;
             startRender = DateTime.Now;
@@ -78,63 +39,65 @@ namespace TheNornProject
 
         void Compute()
         {
-            if ((DateTime.Now - startCompute).TotalMilliseconds >= 250)
+            if ((DateTime.Now - startCompute).TotalMilliseconds >= 250) // Vitesse de simulation
             {
                 startCompute = DateTime.Now;
 
-                foreach (Item i in items)
+                for (int y = 0; y < Program.Map.Size; y++)
                 {
-                    if (i is Norn)
+                    for (int x = 0; x < Program.Map.Size; x++)
                     {
-                        Norn n = (Norn)i;
-                        if (n.isAlive())
-                        {
-                            Map environment = new Map("", 5);
-
-                            int map_x = 0, map_y = 0;
-                            int view_y = -2;
-                            for (int env_y = 0; env_y < 4; env_y++)
-                            {
-                                int view_x = -2;
-                                for (int env_x = 0; env_x < 4; env_x++)
-                                {
-
-                                    map_x = n.X + view_x;
-                                    map_y = n.Y + view_y;
-
-                                    if (map_x < 0 || map_x >= map.Size || map_y < 0 || map_y >= map.Size)
-                                    {
-                                        environment.Data[env_x, env_y] = 0;
-                                    }
-                                    else
-                                    {
-                                        environment.Data[env_x, env_y] = map.Data[map_x, map_y];
-                                    }
-
-                                    view_x++;
-                                }
-
-                                view_y++;
-                            }
-
-                            n.Live(environment);
-                        }
-                        else
-                        {
-                            //p.Remove(n);
-                        }
+                        // Items
                     }
                 }
 
                 // Log
                 textBoxLog.Text = "";
-                textBoxLog.Text = "Norn (" + items.Count + ")\t\tAge\tLife\tHunger\r\n";
-                foreach (Item i in items)
+                textBoxLog.Text = "Norn        \t\tAge\tLife\tHunger\r\n";
+
+                // Norns
+                foreach (Norn n in Program.Map.Norns)
                 {
-                    if (i is Norn)
+                    textBoxLog.Text += (n.Name + "            ").Substring(0, 12) + "\t\t" + n.Age + "\t" + n.Life + "\t" + n.Hunger + "\r\n";
+
+                    if (n.IsAlive())
                     {
-                        Norn n = (Norn)i;
-                        textBoxLog.Text += i.Name + "\t\t\t" + n.Age + "\t" + n.Life + "\t" + n.Hunger + "\r\n";
+                        // Environment
+                        Map environment = new Map(null, 5);
+
+                        int map_x = 0, map_y = 0;
+                        int view_y = -2;
+                        for (int env_y = 0; env_y < 4; env_y++)
+                        {
+                            int view_x = -2;
+                            for (int env_x = 0; env_x < 4; env_x++)
+                            {
+
+                                map_x = n.X + view_x;
+                                map_y = n.Y + view_y;
+
+                                if (map_x < 0 || map_x >= Program.Map.Size || map_y < 0 || map_y >= Program.Map.Size)
+                                {
+                                    environment.Sprites[env_x, env_y] = 0;
+                                    environment.Items[env_x, env_y] = null;
+                                }
+                                else
+                                {
+                                    environment.Sprites[env_x, env_y] = Program.Map.Sprites[map_x, map_y];
+                                    environment.Items[env_x, env_y] = Program.Map.Items[map_x, map_y];
+                                }
+
+                                view_x++;
+                            }
+
+                            view_y++;
+                        }
+
+                        n.Live(environment);
+                    }
+                    else
+                    {
+                        //p.Remove(n);
                     }
                 }
             }
@@ -142,10 +105,9 @@ namespace TheNornProject
 
         void Render()
         {
-            if ((DateTime.Now - startRender).TotalMilliseconds >= 16)
+            if ((DateTime.Now - startRender).TotalMilliseconds >= 16) // Environ 60 FPS
             {
                 startRender = DateTime.Now;
-
                 display.Invalidate();
             }
         }
@@ -155,60 +117,74 @@ namespace TheNornProject
             e.Graphics.Clear(display.BackColor);
             e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
 
-            int mx = 0, my = 0;
-            int physical_mapsize = map.Size * 32;
-
             // Map
+            int physical_mapsize = Program.Map.Size * 32;
+            int my = 0;
+
             for (int y = 0; y < physical_mapsize; y += 32)
             {
+                int mx = 0;
                 for (int x = 0; x < physical_mapsize; x += 32)
                 {
-                    e.Graphics.DrawImage(bitmaps[(int)map.Data[mx, my]], x, y);
+                    // Sprites
+                    e.Graphics.DrawImage(Program.Bitmaps[(int)Program.Map.Sprites[mx, my]], x, y);
+
+                    // Items
+                    if (Program.Map.Items[mx, my] != null)
+                    {
+                        e.Graphics.DrawImage(Program.Bitmaps[(int)Program.Map.Items[mx, my].Sprite], x, y);
+                    }
+
                     mx++;
                 }
-                mx = 0;
                 my++;
             }
 
-            // Objects
-            foreach (Item i in items)
+            // Norns
+            foreach (Norn n in Program.Map.Norns)
             {
-                e.Graphics.DrawImage(bitmaps[(int)i.Sprite], i.X * 32, i.Y * 32);
-                if (i is Norn)
+                e.Graphics.DrawImage(Program.Bitmaps[(int)n.Sprite], n.X * 32, n.Y * 32);
+                e.Graphics.DrawString(n.Name, Font, Brushes.White, (n.X * 32 - (n.Name.Length)), n.Y * 32 - Font.Size * 2);
+                if (n.IsAlive())
                 {
-                    Norn n = (Norn)i;
-                    e.Graphics.DrawString(n.Name, Font, Brushes.White, (n.X * 32 - (n.Name.Length)), n.Y * 32 - Font.Size * 2);
                     e.Graphics.DrawRectangle(Pens.Red, n.X * 32, (n.Y * 32 - 5), (1000 / 32), 1);
                     e.Graphics.DrawRectangle(Pens.Green, n.X * 32, (n.Y * 32 - 5), (n.Life * 10 / 32), 1);
                 }
-
             }
         }
 
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
+            int x, y;
 
-            if (e.KeyCode == Keys.N)
+            switch (e.KeyCode)
             {
-                int x, y;
-                do
-                {
-                    x = rnd.Next(0, map.Size);
-                    y = rnd.Next(0, map.Size);
-                } while (map.Data[x, y] == Sprite.terrain_empty || map.Data[x, y] == Sprite.terrain_wall);
+                case Keys.N:
 
-                bool sex = rnd.Next(0, 2) != 0;
-                Norn n = new Norn(Norn.GenerateNornName(sex), sex, x, y);
+                    bool sex = rnd.Next(0, 2) != 0;
+                    Norn n = new Norn(Norn.GenerateNornName(sex), sex, 0, 0);
+                    do
+                    {
+                        x = rnd.Next(0, Program.Map.Size);
+                        y = rnd.Next(0, Program.Map.Size);
+                    } while (!Program.PopNorn(n, x, y));
+                    break;
 
-                items.Add(n);
+                case Keys.M:
+                    Item i = new Item("Meat", Sprite.object_meat, 0, 0);
+                    do
+                    {
+                        x = rnd.Next(0, Program.Map.Size);
+                        y = rnd.Next(0, Program.Map.Size);
+                    } while (!Program.PopItem(i, x, y));
+                    break;
+
             }
-
         }
 
         bool IsApplicationIdle()
         {
-            NativeMessage result;
-            return PeekMessage(out result, IntPtr.Zero, (uint)0, (uint)0, (uint)0) == 0;
+            return PeekMessage(out NativeMessage result, IntPtr.Zero, (uint)0, (uint)0, (uint)0) == 0;
         }
 
         [StructLayout(LayoutKind.Sequential)]

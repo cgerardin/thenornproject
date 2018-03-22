@@ -13,6 +13,8 @@
             norn_male = 20,
             norn_female = 21,
             norn_dead = 22,
+            norn_male_hungry = 23,
+            norn_female_hungry = 24,
             object_meat = 30
         };
     }
