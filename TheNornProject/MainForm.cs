@@ -12,6 +12,8 @@ namespace TheNornProject
     public partial class MainForm : Form
     {
         Random rnd;
+        Font gamefont18;
+        Font gamefont10;
         DateTime startCompute;
         DateTime startRender;
 
@@ -22,6 +24,9 @@ namespace TheNornProject
             Application.Idle += HandleApplicationIdle;
 
             rnd = new Random();
+
+            gamefont10 = new Font(FontFamily.GenericMonospace, 10, FontStyle.Bold);
+            gamefont18 = new Font(FontFamily.GenericMonospace, 18, FontStyle.Bold);
 
             startCompute = DateTime.Now;
             startRender = DateTime.Now;
@@ -102,13 +107,13 @@ namespace TheNornProject
             if ((DateTime.Now - startRender).TotalMilliseconds >= 16) // Environ 60 FPS
             {
                 startRender = DateTime.Now;
-                display.Invalidate();
+                Invalidate();
             }
         }
 
-        private void display_Paint(object sender, PaintEventArgs e)
+        private void MainForm_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.Clear(display.BackColor);
+            e.Graphics.Clear(BackColor);
             e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
 
             // Map
@@ -140,23 +145,23 @@ namespace TheNornProject
                 // Sprite
                 e.Graphics.DrawImage(Program.Bitmaps[(int)n.Sprite], n.X * 32, n.Y * 32);
                 // Nom
-                e.Graphics.DrawString(n.Name + " [" + n.Age / 12 + "]", Font, Brushes.White, (n.X * 32 - (n.Name.Length + 4)), n.Y * 32 - 24);
+                e.Graphics.DrawString(n.Name + " [" + n.Age / 12 + "]", gamefont10, Brushes.White, (n.X * 32 - (n.Name.Length + 8)), n.Y * 32 - 24);
                 if (n.IsAlive())
                 {
                     // Vie
                     //e.Graphics.DrawRectangle(Pens.White, n.X * 32 - 1, (n.Y * 32 - 7) - 1, (1000 / 32) + 2, 5);
-                    e.Graphics.DrawRectangle(Pens.Red, n.X * 32, (n.Y * 32 - 7), (1000 / 32), 2);
+                    e.Graphics.DrawRectangle(Pens.Red, n.X * 32, (n.Y * 32 - 7), 32, 2);
                     e.Graphics.DrawRectangle(Pens.SpringGreen, n.X * 32, (n.Y * 32 - 7), (n.Life * 10 / 32), 1);
                     e.Graphics.DrawRectangle(Pens.Blue, n.X * 32, (n.Y * 32 - 5), (n.Hunger * 10 / 32), 1);
 
                     // Humeur
                     if (n.IsHungry() && !n.IsChasing())
                     {
-                        e.Graphics.DrawString("?", Font, Brushes.Orange, (n.X * 32 + 32), n.Y * 32);
+                        e.Graphics.DrawString("?", gamefont18, Brushes.Orange, (n.X * 32 + 32), n.Y * 32);
                     }
                     else if (n.IsChasing())
                     {
-                        e.Graphics.DrawString("!", Font, Brushes.Red, (n.X * 32 + 32), n.Y * 32);
+                        e.Graphics.DrawString("!", gamefont18, Brushes.Red, (n.X * 32 + 32), n.Y * 32);
                     }
                 }
             }

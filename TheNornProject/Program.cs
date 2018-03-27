@@ -33,34 +33,42 @@ namespace TheNornProject
             }
 
             // Chargement de la carte
-            Map = new Map("demo_map", 19)
+            string line;
+            int counter = -1;
+            int mapSize = 0;
+
+            StreamReader file = new StreamReader("resources\\demo_map.txt");
+            while ((line = file.ReadLine()) != null)
             {
-                Sprites = new Sprite[,] {
-                {Sprite.terrain_empty, Sprite.terrain_empty, Sprite.terrain_empty, Sprite.terrain_empty, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall},
-                {Sprite.terrain_empty, Sprite.terrain_empty, Sprite.terrain_empty, Sprite.terrain_empty, Sprite.terrain_wall, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_wall},
-                {Sprite.terrain_empty, Sprite.terrain_empty, Sprite.terrain_empty, Sprite.terrain_empty, Sprite.terrain_wall, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_wall},
-                {Sprite.terrain_empty, Sprite.terrain_empty, Sprite.terrain_empty, Sprite.terrain_empty, Sprite.terrain_wall, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_wall},
-                {Sprite.terrain_empty, Sprite.terrain_empty, Sprite.terrain_empty, Sprite.terrain_empty, Sprite.terrain_wall, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_wall},
-                {Sprite.terrain_empty, Sprite.terrain_empty, Sprite.terrain_empty, Sprite.terrain_empty, Sprite.terrain_wall, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_wall},
-                {Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_wall},
-                {Sprite.terrain_wall, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_wall},
-                {Sprite.terrain_wall, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_wall},
-                {Sprite.terrain_wall, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_wall},
-                {Sprite.terrain_wall, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_wall},
-                {Sprite.terrain_wall, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_wall},
-                {Sprite.terrain_wall, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_wall, Sprite.terrain_empty, Sprite.terrain_wall, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_wall},
-                {Sprite.terrain_wall, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_wall},
-                {Sprite.terrain_wall, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_wall},
-                {Sprite.terrain_wall, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_wall},
-                {Sprite.terrain_wall, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_wall},
-                {Sprite.terrain_wall, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_grass, Sprite.terrain_wall},
-                {Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall, Sprite.terrain_wall}
+                if (counter == -1)
+                {
+                    mapSize = int.Parse(line);
+                    Map = new Map("demo_map", mapSize);
+                }
+                else
+                {
+                    for (int i = 0; i < 8; i++)
+                    {
+                        Map.Sprites[i, counter] = (Sprite)int.Parse(line.ToCharArray()[i].ToString());
+                    }
+
+                }
+
+                if (counter >= mapSize)
+                {
+                    break;
+                }
+                else
+                {
+                    counter++;
+                }
             }
-            };
+
+            file.Close();
 
             Random rnd = new Random();
 
-            for (int k = 0; k < 20; k++)
+            for (int k = 0; k < 10; k++)
             {
                 int o = rnd.Next(0, Map.Size);
                 int p = rnd.Next(0, Map.Size);
